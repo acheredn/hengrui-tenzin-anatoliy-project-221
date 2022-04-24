@@ -31,5 +31,9 @@ public class MazeGenerator{
         MazeGenerator mazeGen = new MazeGenerator(5);
         mazeGen.printMaze();
     }
+
+    public int[][] getMaze() {
+        return maze;
+    }
     
 }
