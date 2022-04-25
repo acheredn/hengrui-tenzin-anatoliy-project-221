@@ -19,16 +19,29 @@ public class BruteForce {
         Point curPoint = new Point(0, 0);
         curPoint.setPreviousPoint(null);
         //while curPoint is not at the end location
-        while(curPoint!=new Point(maze[0].length,maze.length)&&curPoint!=null){
+        while(curPoint!=new Point(maze[0].length,maze.length)){
             visitedPoints.add(curPoint);
-            curPoint = findNeighbor(curPoint);
+            //implements backtracking
+            if(!curPoint.equals(findNeighbor(curPoint))) {
+                curPoint = findNeighbor(curPoint);
+            }
+            else if(curPoint.equals(findNeighbor(curPoint))&&curPoint.getPreviousPoint()!=null){
+                curPoint = curPoint.getPreviousPoint();
+            }
+            //It might has neighbor but it has no previous point
+            else{
+                System.out.println(curPoint);
+                System.out.println(findNeighbor(curPoint));
+            }
         }
         
     };
+
+    //Trying to see if there are neighbors around the current point that is 1 and has not been visited
     private Point findNeighbor(Point previousPoint){
         int x = previousPoint.getX();
         int y = previousPoint.getY();
-        if(inBound(x, y)){
+        if(inBound(x, y-1)){
             if(maze[x][y-1]==1){
                 Point foundPoint = new Point(x,y-1);
                 foundPoint.setPreviousPoint(previousPoint);
@@ -64,7 +77,7 @@ public class BruteForce {
                 }
             }
         }
-        return null;
+        return previousPoint;
     }
     private boolean inBound(int x, int y){
         return x>=0 && x < mazeWidth && y>=0 && y <= mazeHeight;
