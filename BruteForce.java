@@ -85,10 +85,12 @@ public class BruteForce {
     //0 1 1 1
     //1 1 0 1
     //1 0 0 1
-    int[][] maze = {{1,0,1,1}
-                   ,{1,1,1,0}
-                   ,{0,1,0,0}
-                   ,{0,1,1,1}}; 
+
+    // maze coded in y,x format
+    int[][] maze = {{1,0,1,1,0,0,1}
+                   ,{1,1,1,1,1,1,1}
+                   ,{0,1,0,0,0,1,1}
+                   ,{0,1,1,1,0,1,1}}; 
     BruteForce b1 = new BruteForce(maze);
     b1.addToAllThePoints();
     b1.getAnswerList();
@@ -97,7 +99,7 @@ public class BruteForce {
 
     private void printSolution() {
         for (Point point : visitedPoints) {
-            System.out.println("x: "+point.getX()+" y: "+point.getY());
+            System.out.println("x: "+point.getY()+" y: "+point.getX());
         }
     }
 }
