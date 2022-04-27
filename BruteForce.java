@@ -6,6 +6,7 @@ public class BruteForce {
     private int mazeWidth;
     private int mazeHeight;
     private ArrayList<Point> visitedPoints;
+    private ArrayList<Point> allThePoints;
     private ArrayList<Point> answerList;
 
     public BruteForce(int[][] maze){
@@ -13,69 +14,64 @@ public class BruteForce {
         this.mazeHeight = maze[0].length;
         this.mazeWidth = maze.length;
         visitedPoints = new ArrayList<>();
+        allThePoints = new ArrayList<>();
     }
-    
+    private void addToAllThePoints(){
+        for (int i=0; i<maze[0].length;i++) {
+            for(int j=0; j<maze.length;j++){
+                allThePoints.add(new Point(j, i, maze[j][i]));
+            }
+            
+        }
+    }
     private void getAnswerList(){
-        Point curPoint = new Point(0, 0);
+        Point curPoint = allThePoints.get(0);
         curPoint.setPreviousPoint(null);
         //while curPoint is not at the end location
-        while(curPoint!=new Point(maze[0].length,maze.length)){
-            visitedPoints.add(curPoint);
+        while(curPoint!=allThePoints.get(allThePoints.size()-1)){
+            if(!visitedPoints.contains(curPoint)){
+                visitedPoints.add(curPoint);
+            }
             //implements backtracking
-            if(!curPoint.equals(findNeighbor(curPoint))) {
+            //If curPoint does not equal to itself when trying to find neighbors
+            //Aka when curPoint has no neighbors that have not been visited
+            if(!curPoint.equals(findNeighbor(curPoint))){
                 curPoint = findNeighbor(curPoint);
             }
+            //Else if it has no neighbors and the previous point does not equal to null
             else if(curPoint.equals(findNeighbor(curPoint))&&curPoint.getPreviousPoint()!=null){
                 curPoint = curPoint.getPreviousPoint();
             }
             //It might has neighbor but it has no previous point
             else{
-                System.out.println(curPoint);
-                System.out.println(findNeighbor(curPoint));
             }
         }
-        
+        visitedPoints.add(curPoint);
     };
 
     //Trying to see if there are neighbors around the current point that is 1 and has not been visited
     private Point findNeighbor(Point previousPoint){
         int x = previousPoint.getX();
         int y = previousPoint.getY();
-        if(inBound(x, y-1)){
-            if(maze[x][y-1]==1){
-                Point foundPoint = new Point(x,y-1);
-                foundPoint.setPreviousPoint(previousPoint);
-                if(!visitedPoints.contains(foundPoint)){
-                    return foundPoint;
-                }
-            }
+        if(inBound(x, y-1)&&maze[x][y-1]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y-1)+x))){
+            Point foundPoint = allThePoints.get(mazeWidth*(y-1)+x);
+            foundPoint.setPreviousPoint(previousPoint);
+            return foundPoint;
         }
-        else if(inBound(x+1, y)){
-            if(maze[x+1][y]==1){
-                Point foundPoint = new Point(x+1,y);
-                foundPoint.setPreviousPoint(previousPoint);
-                if(!visitedPoints.contains(foundPoint)){
-                    return foundPoint;
-                }
-            }
+        else if(inBound(x+1, y)&&maze[x+1][y]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y)+x+1))){       
+            Point foundPoint = allThePoints.get(mazeWidth*(y)+x+1);
+            foundPoint.setPreviousPoint(previousPoint);
+            return foundPoint;
         }
-        else if(inBound(x-1, y)){
-            if(maze[x-1][y]==1){
-                Point foundPoint = new Point(x-1,y);
-                foundPoint.setPreviousPoint(previousPoint);
-                if(!visitedPoints.contains(foundPoint)){
-                    return foundPoint;
-                }
-            }
+        else if(inBound(x-1, y)&&maze[x-1][y]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y)+x-1))){
+            Point foundPoint = allThePoints.get(mazeWidth*(y)+x-1);
+            foundPoint.setPreviousPoint(previousPoint);
+            return foundPoint;
         }
-        else if(inBound(x,y+1)){
-            if(maze[x][y+1]==1){
-                Point foundPoint = new Point(x,y+1);
-                foundPoint.setPreviousPoint(previousPoint);
-                if(!visitedPoints.contains(foundPoint)){
-                    return foundPoint;
-                }
-            }
+        else if(inBound(x,y+1)&&maze[x][y+1]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y+1)+x))){
+            Point foundPoint = allThePoints.get(mazeWidth*(y+1)+x);
+            foundPoint.setPreviousPoint(previousPoint);
+            return foundPoint;
         }
         return previousPoint;
     }
@@ -84,8 +80,18 @@ public class BruteForce {
     }
     
     public static void main(String[] args) {
-    MazeGenerator m1 = new MazeGenerator(10);
-    BruteForce b1 = new BruteForce(m1.getMaze());
+    //MazeGenerator m1 = new MazeGenerator(10);
+    //The x and y are reversed so the matrix actually looks like
+    //1 1 0 0
+    //0 1 1 1
+    //1 1 0 1
+    //1 0 0 1
+    int[][] maze = {{1,0,1,1}
+                   ,{1,1,1,0}
+                   ,{0,1,0,0}
+                   ,{0,1,1,1}}; 
+    BruteForce b1 = new BruteForce(maze);
+    b1.addToAllThePoints();
     b1.getAnswerList();
     b1.printSolution();
     }
