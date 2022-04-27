@@ -32,7 +32,6 @@ public class BruteForce {
             if(!visitedPoints.contains(curPoint)){
                 visitedPoints.add(curPoint);
             }
-            //implements backtracking
             //If curPoint does not equal to itself when trying to find neighbors
             //Aka when curPoint has no neighbors that have not been visited
             if(!curPoint.equals(findNeighbor(curPoint))){
@@ -98,8 +97,7 @@ public class BruteForce {
 
     private void printSolution() {
         for (Point point : visitedPoints) {
-            System.out.println("x: "+point.getX());
-            System.out.println("y: "+point.getY());
+            System.out.println("x: "+point.getX()+" y: "+point.getY());
         }
     }
 }
