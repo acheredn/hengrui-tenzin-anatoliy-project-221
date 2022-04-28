@@ -28,5 +28,6 @@ public class Tremaux {
 
         visitedPoints = new ArrayList<>();
 }
+}
 
 
