@@ -1,5 +1,6 @@
 
 import edu.macalester.graphics.*;
+import java.awt.Color;
 
 public class Visualizer {
 
@@ -8,9 +9,10 @@ public class Visualizer {
     }
 
     public static void main(String[] args) {
-        CanvasWindow canvas = new CanvasWindow("test", 200, 200);
-        Line a = new Line(0, 0, 112, 112);
-        canvas.add(a); 
+        CanvasWindow canvas = new CanvasWindow("test", 1000, 1000);
+        Rectangle pathExist = new Rectangle(10, 10, 100, 100);
+        pathExist.setFillColor(Color.BLACK);
+        canvas.add(pathExist);
     }
     
     
