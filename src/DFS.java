@@ -17,7 +17,7 @@ public class DFS {
         visitedPoints = new ArrayList<>();
         allThePoints = new ArrayList<>();
     }
-    private void addToAllThePoints(){
+    void addToAllThePoints(){
         for (int i=0; i<maze[0].length;i++) {
             for(int j=0; j<maze.length;j++){
                 allThePoints.add(new Point(j, i, maze[j][i]));
@@ -25,7 +25,7 @@ public class DFS {
             
         }
     }
-    private void getAnswerList(){
+    public ArrayList<Point> getAnswerList(){
         Point curPoint = allThePoints.get(0);
         curPoint.setPreviousPoint(null);
         //while curPoint is not at the end location
@@ -47,6 +47,7 @@ public class DFS {
             }
         }
         visitedPoints.add(curPoint);
+        return visitedPoints;
     };
 
     //Trying to see if there are neighbors around the current point that is 1 and has not been visited
@@ -82,12 +83,20 @@ public class DFS {
     public static void main(String[] args) {
     //MazeGenerator m1 = new MazeGenerator(10);
     
-
+    
     // maze coded in y,x format
-    int[][] maze = {{1,0,1,1,0,0,1}
-                   ,{1,1,1,1,1,1,1}
-                   ,{0,1,0,0,0,1,1}
-                   ,{0,1,1,1,0,1,1}}; 
+    int[][] maze = //m1.getHardCodedMaze();
+    {
+        {1,0,1,1,0,0,1,0,0,0}
+        ,{1,1,1,1,1,1,1,1,1,1}
+        ,{0,1,0,0,0,0,1,0,0,0}
+        ,{0,1,1,1,0,0,1,0,1,0}
+        ,{1,1,0,1,0,1,1,0,1,1}
+        ,{1,0,0,1,0,0,0,1,1,0}
+        ,{1,1,1,0,1,1,1,1,0,0}
+        ,{0,1,0,0,1,0,0,0,0,0}
+        ,{0,1,1,1,1,0,0,0,0,0}
+        ,{0,0,0,0,1,1,1,1,1,1}}; 
     DFS d = new DFS(maze);
     d.addToAllThePoints();
     d.getAnswerList();
