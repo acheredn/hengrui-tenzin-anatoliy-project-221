@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 // Tremaux Algorithm for Maze Solving:
 
 // 1. Every time you visit a cell, mark it once.
@@ -25,6 +27,7 @@ public class Tremaux {
         this.mazeWidth = maze.length;
 
         visitedPoints = new ArrayList<>();
+}
 }
 
 

@@ -6,7 +6,7 @@ public class MazeGenerator{
     private int[][] maze;
     
     public MazeGenerator (int size) {
-        maze = new int[size][size];
+        //maze = new int[size][size];
         generateMaze();
     }
 
@@ -16,6 +16,20 @@ public class MazeGenerator{
                 maze [i][j] = (int) Math.floor(Math.random() * 2);
             }
         }
+    }
+    public int[][] getHardCodedMaze(){
+        int[][] newMaze = {
+                    {1,0,1,1,0,0,1,0,0,0}
+                    ,{1,1,1,1,1,1,1,1,1,1}
+                    ,{0,1,0,0,0,0,1,0,0,0}
+                    ,{0,1,1,1,0,0,1,0,1,0}
+                    ,{1,1,0,1,0,1,1,0,1,1}
+                    ,{1,0,0,1,0,0,0,1,1,0}
+                    ,{1,1,1,0,1,1,1,1,0,0}
+                    ,{0,1,0,0,1,0,0,0,0,0}
+                    ,{0,1,1,1,1,0,0,0,0,0}
+                    ,{0,0,0,0,1,1,1,1,1,1}}; 
+        return newMaze;
     }
 
     public void printMaze () {
