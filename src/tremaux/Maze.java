@@ -17,6 +17,8 @@
 
 package tremaux;
 
+import java.util.ArrayList;
+
 import tremaux.Move;
 
 public class Maze {
@@ -24,10 +26,21 @@ public class Maze {
 	public static boolean isFinished;
 	public Maze(){
 		isFinished = false;
-		 maze = new int[][]{ {1,0,1,1,0,0,1}
-		 					,{1,1,1,1,1,1,1}
-		 					,{0,1,0,0,0,1,1}
-		 					,{0,1,1,1,0,1,2}}; 
+		// maze = new int[][]{ {1,0,1,1,0,0,1}
+		//  					,{1,1,1,1,1,1,1}
+		//  					,{0,1,0,0,0,1,1}
+		//  					,{0,1,1,1,0,1,2}}; 
+		maze = new int[][]{
+			{1,0,1,1,0,0,1,0,0,0}
+			,{1,1,1,1,1,1,1,1,1,1}
+			,{0,1,0,0,0,0,1,0,0,0}
+			,{0,1,1,1,0,0,1,0,1,0}
+			,{1,1,0,1,0,1,1,0,1,1}
+			,{1,0,0,1,0,0,0,1,1,0}
+			,{1,1,1,0,1,1,1,1,0,0}
+			,{0,1,0,0,1,0,0,0,0,0}
+			,{0,1,1,1,1,0,0,0,0,0}
+			,{0,0,0,0,1,1,1,1,1,2}}; 
 				 	  
 	}
 	public static boolean checkMove(Move m){
@@ -64,5 +77,9 @@ public class Maze {
 		Position p1 = new Position();
 		maze.printMaze();
 		p1.run();
+		ArrayList<Point> result = p1.getResultPoint();
+		for (Point p: result) {
+			System.out.println("x: "+p.getX()+" y: "+p.getY());
+		}
 	}
 }

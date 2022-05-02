@@ -1,13 +1,13 @@
 package tremaux;
 
 import java.util.ArrayList;
-
 import tremaux.Move;
 
 public class Position {
 	int[] currPos;
 	boolean backtrack;
 	ArrayList<Move> moveList = new ArrayList<Move>();
+	ArrayList<Point> resultPoints = new ArrayList<Point>();
 	public Position(){
 		backtrack = false;
 		currPos = new int[]{0,0};
@@ -39,7 +39,7 @@ public class Position {
 		if(moveList.size()==c&&moveList.size()>1){
 			backtrack();
 		}
-		
+		resultPoints.add(new Point(currPos[1],currPos[0],1));
 		System.out.println("x:" + currPos[0]+","+ "y:" + currPos[1]);		
 	}
 	public void backtrack(){
@@ -77,5 +77,8 @@ public class Position {
 		}
 		System.out.println("DONE");
 		return count;
+	}
+	public ArrayList<Point> getResultPoint (){
+		return resultPoints;
 	}
 }

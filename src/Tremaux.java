@@ -27,7 +27,7 @@ public class Tremaux {
         this.mazeWidth = maze.length;
 
         visitedPoints = new ArrayList<>();
-}
+    }
 }
 
 
