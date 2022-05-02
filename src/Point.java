@@ -1,5 +1,5 @@
 
-public class Point {
+public class Point implements Comparable<Point>{
     private int x;
     private int y;
     private int value;
@@ -29,5 +29,14 @@ public class Point {
 
     public Point getPreviousPoint() {
         return previousPoint;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+    
+    @Override
+    public int compareTo(Point o) {
+        return this.getValue()-o.getValue();
     }
 }

@@ -8,7 +8,6 @@ public class Dijkstra{
     private int mazeWidth;
     private int mazeHeight;
     private ArrayList<Point> allThePoints;
-    private ArrayList<Point> allThePointsInTheGraph;
     private ArrayList<Point> visitedPoints;
     private HashMap<Point, ArrayList<Point>> pointNeighborMap;
     private ArrayList<Point> dijkstraForTheShortestDistance;
@@ -17,6 +16,9 @@ public class Dijkstra{
         this.maze = maze;
         allThePoints = new ArrayList<Point>();
         visitedPoints = new ArrayList<Point>();
+        pointNeighborMap = new HashMap<>();
+        dijkstraForTheShortestDistance = new ArrayList<Point>();
+        pointsQueue = new PriorityQueue<Point>();
         initializeAllThePoints();
     }
     private void initializeAllThePoints(){
@@ -38,7 +40,19 @@ public class Dijkstra{
         visitedPoints.add(allThePoints.get(0));
         pointsQueue.add(allThePoints.get(0));
         while(visitedPoints.size()!=allThePoints.size()){
-            Point p = 
+            Point p = pointsQueue.poll();
+            while(visitedPoints.contains(p)){
+                p = pointsQueue.poll();
+            }
+            visitedPoints.add(p);
+            dijkstraForTheShortestDistance.add(p);
+            if(p!=null){
+            ArrayList<Point> neighboList = findNeigborPoints(p);
+            for(Point point:neighboList){
+                point.setValue(point.getValue()+p.getValue());
+            }
+            visitedPoints.addAll(neighboList);
+            }
         }
     }
 
@@ -76,5 +90,26 @@ public class Dijkstra{
     private boolean inBound(int x, int y){
         return x>=0 && x < mazeWidth && y>=0 && y <= mazeHeight;
     }
-
+    public ArrayList<Point> getDijkstraForTheShortestDistance() {
+        return dijkstraForTheShortestDistance;
+    }
+    public static void main(String[] args) {
+        int[][] maze = //m1.getHardCodedMaze();
+    {
+        {1,0,1,1,0,0,1,0,0,0}
+        ,{1,1,1,1,1,1,1,1,1,1}
+        ,{0,1,0,0,0,0,1,0,0,0}
+        ,{0,1,1,1,0,0,1,0,1,0}
+        ,{1,1,0,1,0,1,1,0,1,1}
+        ,{1,0,0,1,0,0,0,1,1,0}
+        ,{1,1,1,0,1,1,1,1,0,0}
+        ,{0,1,0,0,1,0,0,0,0,0}
+        ,{0,1,1,1,1,0,0,0,0,0}
+        ,{0,0,0,0,1,1,1,1,1,1}}; 
+        Dijkstra d = new Dijkstra(maze);
+        d.initializeAllThePoints();
+        d.initializePointNeighborMap();
+        d.doDijkstra();
+        System.out.println(d.getDijkstraForTheShortestDistance().size());
+    }
 }
