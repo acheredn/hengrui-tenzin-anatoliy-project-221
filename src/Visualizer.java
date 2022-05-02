@@ -77,7 +77,7 @@ public class Visualizer {
 
         for (int i = 0; i < maze.length; i++){
             for (int j = 0; j < maze[0].length; j++) {
-                if (mazeTwo[i][j] == 1){
+                if (mazeTwo[i][j] == 1 || mazeTwo[i][j] == 2){
                     Rectangle pathExist = new Rectangle(500 + j*40, i*40, 40, 40);
                     pathExist.setFillColor(Color.GREEN);
                     canvas.add(pathExist);
@@ -107,10 +107,5 @@ public class Visualizer {
                 canvas.add(visualMazeTwo[i][j]);
             }
         }
-
-        
-
-    }
-    
-    
+    }   
 }
