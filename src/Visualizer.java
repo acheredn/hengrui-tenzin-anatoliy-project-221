@@ -99,7 +99,7 @@ public class Visualizer {
         System.out.println(pathTwo);
         System.out.println(pathTwo.size());
         for(Point point:pathTwo){
-            visualMazeTwo[point.getX()][point.getY()].setFillColor(Color.BLUE);
+            visualMazeTwo[point.getY()][point.getX()].setFillColor(Color.BLUE);
         }
 
         for (int i = 0; i < visualMazeTwo.length; i++){

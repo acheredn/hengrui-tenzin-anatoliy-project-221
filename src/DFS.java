@@ -1,6 +1,4 @@
-
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 public class DFS {
     private int[][] maze;
@@ -113,7 +111,6 @@ public class DFS {
     }
 }
 
-// 128 Maze Solver Algorithem
 // At the start (hint: look at the stepCount variable)
 // Create an (empty) worklist (queue/stack) of squares. (Hint: makeEmpty())
 // Add the start square to the worklist. (Hint: maze.getStart() will return the Start square)

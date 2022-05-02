@@ -12,6 +12,7 @@ public class Dijkstra{
     private HashMap<Point, ArrayList<Point>> pointNeighborMap;
     private ArrayList<Point> dijkstraForTheShortestDistance;
     private PriorityQueue<Point> pointsQueue;
+
     public Dijkstra(int[][] maze){
         this.maze = maze;
         allThePoints = new ArrayList<Point>();
@@ -21,6 +22,7 @@ public class Dijkstra{
         pointsQueue = new PriorityQueue<Point>();
         initializeAllThePoints();
     }
+    
     private void initializeAllThePoints(){
         for(int i =0;i<maze[0].length;i++){
             for(int j = 0;j<maze.length;j++){
@@ -90,9 +92,11 @@ public class Dijkstra{
     private boolean inBound(int x, int y){
         return x>=0 && x < mazeWidth && y>=0 && y <= mazeHeight;
     }
+
     public ArrayList<Point> getDijkstraForTheShortestDistance() {
         return dijkstraForTheShortestDistance;
     }
+
     public static void main(String[] args) {
         int[][] maze = //m1.getHardCodedMaze();
     {
@@ -114,7 +118,7 @@ public class Dijkstra{
         d.doDijkstra();
         long t1 = System.nanoTime();
         System.out.println("time: "+(t1-t0));
-        
+
         System.out.println(d.getDijkstraForTheShortestDistance().size());
     }
 }
