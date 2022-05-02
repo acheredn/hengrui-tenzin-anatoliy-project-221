@@ -72,12 +72,16 @@ public class Maze {
 
 	public static void main(String[] args) {
 		Maze maze = new Maze();
+		long t0 = System.nanoTime();
 		TremauxPosition p1 = new TremauxPosition();
 		//maze.printMaze();
 		p1.run();
 		ArrayList<Point> result = p1.getResultPoint();
+		long t1 = System.nanoTime();
 		for (Point p: result) {
 			System.out.println("x: "+p.getX()+" y: "+p.getY());
 		}
+
+		System.out.println("time: "+ (t1-t0));
 	}
 }

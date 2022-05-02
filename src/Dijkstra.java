@@ -106,10 +106,15 @@ public class Dijkstra{
         ,{0,1,0,0,1,0,0,0,0,0}
         ,{0,1,1,1,1,0,0,0,0,0}
         ,{0,0,0,0,1,1,1,1,1,1}}; 
+
+        long t0 = System.nanoTime();
         Dijkstra d = new Dijkstra(maze);
         d.initializeAllThePoints();
         d.initializePointNeighborMap();
         d.doDijkstra();
+        long t1 = System.nanoTime();
+        System.out.println("time: "+(t1-t0));
+        
         System.out.println(d.getDijkstraForTheShortestDistance().size());
     }
 }

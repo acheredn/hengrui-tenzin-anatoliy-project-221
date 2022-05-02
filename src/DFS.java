@@ -102,7 +102,7 @@ public class DFS {
     d.addToAllThePoints();
     d.getAnswerList();
     long t1 = System.nanoTime();
-    System.out.println(t1-t0);
+    System.out.println("time: "+ (t1-t0));
     d.printSolution();
     }
 
