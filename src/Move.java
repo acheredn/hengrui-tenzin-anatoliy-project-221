@@ -1,4 +1,3 @@
-package tremaux;
 
 import java.util.ArrayList;
 

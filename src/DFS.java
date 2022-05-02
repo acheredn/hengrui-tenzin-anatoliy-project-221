@@ -98,8 +98,11 @@ public class DFS {
         ,{0,1,1,1,1,0,0,0,0,0}
         ,{0,0,0,0,1,1,1,1,1,1}}; 
     DFS d = new DFS(maze);
+    long t0 = System.nanoTime();
     d.addToAllThePoints();
     d.getAnswerList();
+    long t1 = System.nanoTime();
+    System.out.println(t1-t0);
     d.printSolution();
     }
 

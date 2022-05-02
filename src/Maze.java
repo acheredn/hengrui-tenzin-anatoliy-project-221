@@ -15,11 +15,10 @@
 // When you finally reach the end, follow cells marked exactly once back to the start.
 // If the Maze has no solution, you'll find yourself at the start with all cells marked twice.
 
-package tremaux;
+
 
 import java.util.ArrayList;
 
-import tremaux.Move;
 
 public class Maze {
 	private static int[][] maze;
@@ -45,21 +44,20 @@ public class Maze {
 	}
 	public static boolean checkMove(Move m){
 		
-		 if(m.getDestPos()[0]>=maze.length || m.getDestPos()[1]>=maze[0].length || m.getDestPos()[0]<0 || m.getDestPos()[1]<0 ){
+		if(m.getDestPos()[0]>=maze.length || m.getDestPos()[1]>=maze[0].length || m.getDestPos()[0]<0 || m.getDestPos()[1]<0 ){
 			return false;
 		}
-		 else if( maze[m.getDestPos()[0]][m.getDestPos()[1]]==0){
-			 return false;
-		 }
+		else if( maze[m.getDestPos()[0]][m.getDestPos()[1]]==0){
+			return false;
+		}
 		else if(maze[m.getDestPos()[0]][m.getDestPos()[1]]==2){
-			
 			isFinished = true;
 			return true;
 		}
 		else return true;
 	}
 	
-	public static int[][] getMaze(){
+	public int[][] getMaze(){
 		return maze;
 	}
 	
@@ -75,7 +73,7 @@ public class Maze {
 	public static void main(String[] args) {
 		Maze maze = new Maze();
 		Position p1 = new Position();
-		maze.printMaze();
+		//maze.printMaze();
 		p1.run();
 		ArrayList<Point> result = p1.getResultPoint();
 		for (Point p: result) {

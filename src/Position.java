@@ -1,13 +1,12 @@
-package tremaux;
-
 import java.util.ArrayList;
-import tremaux.Move;
+// import tremaux.Point;
 
 public class Position {
 	int[] currPos;
 	boolean backtrack;
 	ArrayList<Move> moveList = new ArrayList<Move>();
 	ArrayList<Point> resultPoints = new ArrayList<Point>();
+
 	public Position(){
 		backtrack = false;
 		currPos = new int[]{0,0};
@@ -27,9 +26,8 @@ public class Position {
 			if(Maze.checkMove(new Move(currPos, s))){
 				tempDir.add(s);
 			}
-			
-			
 		}
+
 		if(tempDir.size()!=0){
 		Move temp = new Move(currPos, tempDir);
 		currPos = temp.getDestPos();
@@ -56,10 +54,10 @@ public class Position {
 			i--;
 		}
 		if(Maze.checkMove(new Move(currPos, d))){
-		Move t = new Move(currPos, d);
-		moveList.add(t);
-		System.out.println(t.getDir());
-		currPos = t.getDestPos();
+			Move t = new Move(currPos, d);
+			moveList.add(t);
+			System.out.println(t.getDir());
+			currPos = t.getDestPos();
 		}
 		
 		moveList.get(i).moveDir.remove(moveList.get(i).moveDir.size()-1);
@@ -69,7 +67,8 @@ public class Position {
 		currPos = t.getDestPos();
 		
 	}
-	public int run(){
+
+	public int run () {
 		int count = 0;
 		while(!(Maze.isFinished)){
 			tryMove();

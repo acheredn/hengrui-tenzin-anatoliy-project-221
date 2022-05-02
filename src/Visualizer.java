@@ -1,5 +1,6 @@
 
 import edu.macalester.graphics.*;
+
 import java.awt.Color;
 import java.util.*;
 
@@ -10,7 +11,7 @@ public class Visualizer {
     }
 
     public static void main(String[] args) {
-        CanvasWindow canvas = new CanvasWindow("Maze", 500, 500);
+        CanvasWindow canvas = new CanvasWindow("Maze", 1000, 1000);
         Rectangle[][] visualMaze = new Rectangle[10][10];
         int[][] maze = {
                          {1,0,1,0,0,0,1,0,0,0}
@@ -41,7 +42,7 @@ public class Visualizer {
         }
         canvas.draw();
         canvas.pause(1000);
-        canvas.removeAll();
+
 
         DFS dfs = new DFS(maze);
         dfs.addToAllThePoints();
@@ -57,6 +58,46 @@ public class Visualizer {
                 canvas.add(visualMaze[i][j]);
             }
         }
+
+
+        //Tremaux Visualizer
+        Maze mTwo = new Maze();
+        int[][] mazeTwo = mTwo.getMaze();
+        Rectangle[][] visualMazeTwo = new Rectangle[10][10];
+
+        for (int i = 0; i < maze.length; i++){
+            for (int j = 0; j < maze[0].length; j++) {
+                if (mazeTwo[i][j] == 1){
+                    Rectangle pathExist = new Rectangle(500 + j*40, i*40, 40, 40);
+                    pathExist.setFillColor(Color.GREEN);
+                    canvas.add(pathExist);
+                    visualMazeTwo[i][j] = pathExist;
+                } else {
+                    Rectangle pathNotExist = new Rectangle(500 + j*40, i*40, 40, 40);
+                    pathNotExist.setFillColor(Color.RED);
+                    canvas.add(pathNotExist);
+                    visualMazeTwo[i][j] = pathNotExist;
+                }
+            }
+        }
+        canvas.draw();
+        canvas.pause(1000);
+
+        Position p = new Position();
+        p.run();
+        ArrayList<Point> pathTwo = p.getResultPoint();
+        System.out.println(pathTwo);
+        System.out.println(pathTwo.size());
+        for(Point point:pathTwo){
+            visualMazeTwo[point.getX()][point.getY()].setFillColor(Color.BLUE);
+        }
+
+        for (int i = 0; i < visualMazeTwo.length; i++){
+            for (int j = 0; j < visualMazeTwo[0].length; j++) {
+                canvas.add(visualMazeTwo[i][j]);
+            }
+        }
+
         
 
     }
