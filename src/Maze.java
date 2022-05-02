@@ -72,7 +72,7 @@ public class Maze {
 
 	public static void main(String[] args) {
 		Maze maze = new Maze();
-		Position p1 = new Position();
+		TremauxPosition p1 = new TremauxPosition();
 		//maze.printMaze();
 		p1.run();
 		ArrayList<Point> result = p1.getResultPoint();

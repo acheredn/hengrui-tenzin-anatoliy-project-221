@@ -10,24 +10,6 @@ import java.util.ArrayList;
 // 6. When you finally reach the end, follow cells marked exactly once back to the start.
 // 7. If the Maze has no solution, you'll find yourself at the start with all cells marked twice.
 
-
-public class Tremaux {
-
-    private int[][] maze;
-    private int mazeWidth;
-    private int mazeHeight;
-    private int[] position;
-
-    private ArrayList<Point> visitedPoints;
-    private ArrayList<Point> answerList;
-
-    public Tremaux(int[][] maze){
-        this.maze = maze;
-        this.mazeHeight = maze[0].length;
-        this.mazeWidth = maze.length;
-
-        visitedPoints = new ArrayList<>();
-    }
-}
+// Implemented with TremauxPosition.java which uses Point.java, Move.java, and Maze.java
 
 

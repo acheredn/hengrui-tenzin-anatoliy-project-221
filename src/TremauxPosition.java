@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 // import tremaux.Point;
 
-public class Position {
+public class TremauxPosition {
 	int[] currPos;
 	boolean backtrack;
 	ArrayList<Move> moveList = new ArrayList<Move>();
 	ArrayList<Point> resultPoints = new ArrayList<Point>();
 
-	public Position(){
+	public TremauxPosition(){
 		backtrack = false;
 		currPos = new int[]{0,0};
 		moveList.add(new Move(currPos,""));

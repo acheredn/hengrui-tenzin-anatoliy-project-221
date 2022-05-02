@@ -44,20 +44,20 @@ public class Visualizer {
         canvas.pause(1000);
 
 
-        DFS dfs = new DFS(maze);
-        dfs.addToAllThePoints();
-        ArrayList<Point> path = dfs.getAnswerList();
-        System.out.println(path.size());
-        for(Point point:path){
-            visualMaze[point.getX()][point.getY()].setFillColor(Color.BLUE);
-        }
+        // DFS dfs = new DFS(maze);
+        // dfs.addToAllThePoints();
+        // ArrayList<Point> path = dfs.getAnswerList();
+        // System.out.println(path.size());
+        // for(Point point:path){
+        //     visualMaze[point.getX()][point.getY()].setFillColor(Color.BLUE);
+        // }
 
-        System.out.println("visual maze 1" + visualMaze[0][0].getHeight());
-        for (int i = 0; i < visualMaze.length; i++){
-            for (int j = 0; j < visualMaze[0].length; j++) {
-                canvas.add(visualMaze[i][j]);
-            }
-        }
+        // System.out.println("visual maze 1" + visualMaze[0][0].getHeight());
+        // for (int i = 0; i < visualMaze.length; i++){
+        //     for (int j = 0; j < visualMaze[0].length; j++) {
+        //         canvas.add(visualMaze[i][j]);
+        //     }
+        // }
 
 
         //Tremaux Visualizer
@@ -83,7 +83,7 @@ public class Visualizer {
         canvas.draw();
         canvas.pause(1000);
 
-        Position p = new Position();
+        TremauxPosition p = new TremauxPosition();
         p.run();
         ArrayList<Point> pathTwo = p.getResultPoint();
         System.out.println(pathTwo);
