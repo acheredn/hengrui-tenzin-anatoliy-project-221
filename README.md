@@ -29,3 +29,6 @@ Given a binary rectangular matrix, it finds the shortest path’s length in a ma
  [ 1  1  1  1  1  0  0  1  1  1 ]
  
  [ 0  0  1  0  0  1  1  0  0  1 ]
+
+
+![hengrui-tenzin-anatoliy-project-221]()
