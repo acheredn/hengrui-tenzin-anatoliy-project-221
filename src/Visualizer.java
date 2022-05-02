@@ -1,5 +1,6 @@
 
 import edu.macalester.graphics.*;
+import edu.macalester.graphics.ui.TextField;
 
 import java.awt.Color;
 import java.util.*;
@@ -12,7 +13,13 @@ public class Visualizer {
 
     public static void main(String[] args) {
         CanvasWindow canvas = new CanvasWindow("Maze", 1000, 1000);
+
+        // DFS Visulalizer
         Rectangle[][] visualMaze = new Rectangle[10][10];
+        GraphicsText label = new GraphicsText("DFS");
+        label.setFontSize(50);
+        label.setPosition(150, 450);
+        canvas.add(label);
         int[][] maze = {
                          {1,0,1,0,0,0,1,0,0,0}
                         ,{1,1,1,1,1,1,1,1,1,1}
@@ -41,29 +48,32 @@ public class Visualizer {
             }
         }
         canvas.draw();
-        canvas.pause(1000);
+        canvas.pause(4000);
 
+        DFS dfs = new DFS(maze);
+        dfs.addToAllThePoints();
+        ArrayList<Point> path = dfs.getAnswerList();
+        System.out.println(path.size());
+        for(Point point:path){
+            visualMaze[point.getX()][point.getY()].setFillColor(Color.BLUE);
+        }
 
-        // DFS dfs = new DFS(maze);
-        // dfs.addToAllThePoints();
-        // ArrayList<Point> path = dfs.getAnswerList();
-        // System.out.println(path.size());
-        // for(Point point:path){
-        //     visualMaze[point.getX()][point.getY()].setFillColor(Color.BLUE);
-        // }
-
-        // System.out.println("visual maze 1" + visualMaze[0][0].getHeight());
-        // for (int i = 0; i < visualMaze.length; i++){
-        //     for (int j = 0; j < visualMaze[0].length; j++) {
-        //         canvas.add(visualMaze[i][j]);
-        //     }
-        // }
+        System.out.println("visual maze 1" + visualMaze[0][0].getHeight());
+        for (int i = 0; i < visualMaze.length; i++){
+            for (int j = 0; j < visualMaze[0].length; j++) {
+                canvas.add(visualMaze[i][j]);
+            }
+        }
 
 
         //Tremaux Visualizer
         Maze mTwo = new Maze();
         int[][] mazeTwo = mTwo.getMaze();
         Rectangle[][] visualMazeTwo = new Rectangle[10][10];
+        GraphicsText labelTwo = new GraphicsText("Tremaux");
+        labelTwo.setFontSize(50);
+        labelTwo.setPosition(600, 450);
+        canvas.add(labelTwo);
 
         for (int i = 0; i < maze.length; i++){
             for (int j = 0; j < maze[0].length; j++) {
@@ -81,7 +91,7 @@ public class Visualizer {
             }
         }
         canvas.draw();
-        canvas.pause(1000);
+        canvas.pause(4000);
 
         TremauxPosition p = new TremauxPosition();
         p.run();
