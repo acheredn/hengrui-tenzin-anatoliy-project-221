@@ -28,9 +28,7 @@ DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java.
  * Does the square correspond to the exit square? If so, the finish was reachable; terminate the algorithm (found a solution!).
  
  * Otherwise, it is a reachable non-finish location that we haven't explored yet. So, explore it as follows:
- 
  compute all the adjacent up, right, down, left locations that are inside the maze and aren't walls, and
- 
  add them to the worklist for later exploration provided they have not previously been added to the worklist.
  
  * Also, record the fact that you've explored this location so you won't ever have to explore it again. Note that a location is considered "explored" once its neighbors have been put on the worklist. The neighbors themselves are not "explored" until they are removed from the worklist and checked for their neighbors.
