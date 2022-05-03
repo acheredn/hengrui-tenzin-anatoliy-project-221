@@ -54,7 +54,7 @@ public class Dijkstra{
             for(Point point:neighboList){
                 point.setValue(point.getValue()+p.getValue());
             }
-            visitedPoints.addAll(neighboList);
+            pointsQueue.addAll(neighboList);
             }
         }
     }
@@ -91,7 +91,7 @@ public class Dijkstra{
     }
 
     private boolean inBound(int x, int y){
-        return x>=0 && x < mazeWidth && y>=0 && y <= mazeHeight;
+        return x>=0 && x < mazeWidth && y>=0 && y < mazeHeight;
     }
     public ArrayList<Point> getDijkstraForTheShortestDistance() {
         return dijkstraForTheShortestDistance;
@@ -112,7 +112,7 @@ public class Dijkstra{
         Dijkstra d = new Dijkstra(maze);
         d.initializeAllThePoints();
         d.initializePointNeighborMap();
-        //d.doDijkstra();
+        d.doDijkstra();
         System.out.println(d.getDijkstraForTheShortestDistance().size());
     }
 }
