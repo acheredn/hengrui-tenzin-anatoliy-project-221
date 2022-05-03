@@ -34,7 +34,7 @@ public class Dijkstra{
     
     private void initializePointNeighborMap(){
         for(Point point:allThePoints){
-            pointNeighborMap.put(point, findNeigborPoints(point));
+            pointNeighborMap.put(point, findNeighborPoints(point));
         }
     }
 
@@ -42,6 +42,7 @@ public class Dijkstra{
         //Add the starting point
         visitedPoints.add(allThePoints.get(0));
         pointsQueue.add(allThePoints.get(0));
+        pointsQueue.addAll(findNeighborPoints(allThePoints.get(0)));
         while(visitedPoints.size()!=allThePoints.size()){
             Point p = pointsQueue.poll();
             while(visitedPoints.contains(p)){
@@ -50,7 +51,7 @@ public class Dijkstra{
             visitedPoints.add(p);
             dijkstraForTheShortestDistance.add(p);
             if(p!=null){
-            ArrayList<Point> neighboList = findNeigborPoints(p);
+            ArrayList<Point> neighboList = findNeighborPoints(p);
             for(Point point:neighboList){
                 point.setValue(point.getValue()+p.getValue());
             }
@@ -63,7 +64,7 @@ public class Dijkstra{
      * 
      * @return whether this point's neighbor
      */
-    private ArrayList<Point> findNeigborPoints(Point point){
+    private ArrayList<Point> findNeighborPoints(Point point){
         ArrayList<Point> newNeighborList = new ArrayList<>();
         int x = point.getX();
         int y = point.getY();
@@ -113,6 +114,6 @@ public class Dijkstra{
         d.initializeAllThePoints();
         d.initializePointNeighborMap();
         d.doDijkstra();
-        System.out.println(d.getDijkstraForTheShortestDistance().size());
+        //System.out.println(d.getDijkstraForTheShortestDistance().size());
     }
 }
