@@ -8,14 +8,21 @@ Given a binary rectangular matrix, it finds the path in a maze from a given sour
 <img src= "https://github.com/acheredn/hengrui-tenzin-anatoliy-project-221/blob/main/Screen%20Shot%202022-05-02%20at%201.06.05%20AM.png" width=250><br>
 
 <h2> How to run the program </h2>
-Visualizer can be run by the main class of Visualizer.java. However, there may be issues with gradle although we generally did not have an issue.
+Visualizer can be run by the main class of **"Visualizer.java"**. 
 
-DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java. 
+However, there may be issues with gradle although we generally did not have an issue.
+
+DFS can be run with **"DFS.java"**, and Djikstras can be run with **"Djikstras.java"**. 
 
 <h3> Djikstras </h3>
 
+
 <h3> DFS </h3>
+DFS is a backtracking algorithm which helps us find the path in the maze and backtracks along the path when it is hitting a dead end.
+This algorithm's worst case time complexity is O (n). It is in essence as we researched a modern adaptation of Tremaux algorithm.
+
  Pseudocode
+ 
  * Create an (empty) worklist arraylist of squares.
  
  * Add the start square to the worklist. (Hint: maze.getStart() will return the Start square)
