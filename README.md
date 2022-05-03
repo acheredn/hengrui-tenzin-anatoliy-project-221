@@ -14,6 +14,8 @@ However, there may be issues with gradle although we generally did not have an i
 
 DFS can be run with **"DFS.java"**, and Djikstras can be run with **"Djikstras.java"**. 
 
+There should not be extra library to be included. This project uses gradle for kilt graphics.
+
 <h3> Djikstras </h3>
 
 Dijkstras is an algorithm used to find the shortest path from a point to another point. Dijkstras started from one point and marked the distance of that point to its neighboring point. After that it picked the neighboring point with the shortest distance. And found all its neighbor and assigned the value of themselves plus the point before that. In this way Dijkstras algorithm would be able to calculate all the points distances from the start. After which it would find the path with the shortest distance and traced back to it.
