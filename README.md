@@ -41,6 +41,8 @@ Tremaux algorithm is one of the most efficient ways to solve an unknown maze. We
 
 To see the algorithm without visualizing, you should run **“Maze.java”**.  You can also change the structure of the maze in the same class. Make sure to put “2” in the array to indicate the end of the maze. You should run ***"Visualizer.java"*** to see it visualuzed with other algorithms we explored.
 
+<img src= "https://github.com/acheredn/hengrui-tenzin-anatoliy-project-221/blob/main/Tremaux.png" width=250><br>
+
 <h3> Presentation urls </h3>
 Presentation
 https://docs.google.com/presentation/d/1oPeGUCYF-pclySY9wsxppyEmUSsWIFw8Btk41j4qTA8/edit?usp=sharing
