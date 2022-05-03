@@ -15,6 +15,7 @@ DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java.
 <h3> Djikstras </h3>
 
 <h3> DFS </h3>
+ Pseudocode
  * Create an (empty) worklist arraylist of squares.
  
  * Add the start square to the worklist. (Hint: maze.getStart() will return the Start square)
