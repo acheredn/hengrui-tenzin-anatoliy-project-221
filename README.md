@@ -12,6 +12,29 @@ Visualizer can be run by the main class of Visualizer.java. However, there may b
 
 DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java. 
 
+<h3> Djikstras </h3>
+
+<h3> DFS </h3>
+ * Create an (empty) worklist arraylist of squares.
+ 
+ * Add the start square to the worklist. (Hint: maze.getStart() will return the Start square)
+ 
+ * Then apply the following repeatedly
+ 
+ * Is the worklist empty? If so, the exit is unreachable; terminate the algorithm by returning null (the maze is not solvable).
+ 
+ * Otherwise, grab the "next" location to explore from the worklist. 
+ 
+ * Does the square correspond to the exit square? If so, the finish was reachable; terminate the algorithm (found a solution!).
+ 
+ * Otherwise, it is a reachable non-finish location that we haven't explored yet. So, explore it as follows:
+ 
+ compute all the adjacent up, right, down, left locations that are inside the maze and aren't walls, and
+ 
+ add them to the worklist for later exploration provided they have not previously been added to the worklist.
+ 
+ * Also, record the fact that you've explored this location so you won't ever have to explore it again. Note that a location is considered "explored" once its neighbors have been put on the worklist. The neighbors themselves are not "explored" until they are removed from the worklist and checked for their neighbors.
+
 <h3>Tremaux Algorithm</h3>
 
 Tremaux algorithm is one of the most efficient ways to solve an unknown maze. We implemented it by splitting the logic into three self-explanatory classes: Maze, Move, Position. The main idea behind the algorithm is that it arbitrarily chooses path at junction, and marks the path points until found the solution, if there is one. According to our calculations, the time complexity of the algorithm is O(n).
