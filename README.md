@@ -33,6 +33,8 @@ DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java.
  
  * Also, record the fact that you've explored this location so you won't ever have to explore it again. Note that a location is considered "explored" once its neighbors have been put on the worklist. The neighbors themselves are not "explored" until they are removed from the worklist and checked for their neighbors.
 
+<img src= "https://github.com/acheredn/hengrui-tenzin-anatoliy-project-221/blob/main/DFS.png" width=250><br>
+
 <h3>Tremaux Algorithm</h3>
 
 Tremaux algorithm is one of the most efficient ways to solve an unknown maze. We implemented it by splitting the logic into three self-explanatory classes: Maze, Move, Position. The main idea behind the algorithm is that it arbitrarily chooses path at junction, and marks the path points until found the solution, if there is one. According to our calculations, the time complexity of the algorithm is O(n).
