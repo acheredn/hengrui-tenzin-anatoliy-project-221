@@ -17,3 +17,10 @@ DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java.
 Tremaux algorithm is one of the most efficient ways to solve an unknown maze. We implemented it by splitting the logic into three self-explanatory classes: Maze, Move, Position. The main idea behind the algorithm is that it arbitrarily chooses path at junction, and marks the path points until found the solution, if there is one. According to our calculations, the time complexity of the algorithm is O(n).
 
 To see the algorithm without visualizing, you should run **“Maze.java”**.  You can also change the structure of the maze in the same class. Make sure to put “2” in the array to indicate the end of the maze. You should run ***"Visualizer.java"*** to see it visualuzed with other algorithms we explored.
+
+<h3> Presentation urls </h3>
+Presentation
+https://docs.google.com/presentation/d/1oPeGUCYF-pclySY9wsxppyEmUSsWIFw8Btk41j4qTA8/edit?usp=sharing
+
+Jamboard for Djikstras path
+https://jamboard.google.com/d/1eZ8n0q6BbHvvWsB0yxSfcf2nnWS6RLx4xwEzX3GzQ-I/edit?usp=sharing
