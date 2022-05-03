@@ -12,7 +12,7 @@ Visualizer can be run by the main class of Visualizer.java. However, there may b
 
 DFS can be run with DFS.java, and Djikstras can be run with Djikstras.java. 
 
-<h2>Tremaux Algorithm</h2>
+<h3>Tremaux Algorithm</h3>
 
 Tremaux algorithm is one of the most efficient ways to solve an unknown maze. We implemented it by splitting the logic into three self-explanatory classes: Maze, Move, Position. The main idea behind the algorithm is that it arbitrarily chooses path at junction, and marks the path points until found the solution, if there is one. According to our calculations, the time complexity of the algorithm is O(n).
 
