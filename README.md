@@ -16,6 +16,7 @@ DFS can be run with **"DFS.java"**, and Djikstras can be run with **"Djikstras.j
 
 <h3> Djikstras </h3>
 
+Dijkstras is an algorithm used to find the shortest path from a point to another point. Dijkstras started from one point and marked the distance of that point to its neighboring point. After that it picked the neighboring point with the shortest distance. And found all its neighbor and assigned the value of themselves plus the point before that. In this way Dijkstras algorithm would be able to calculate all the points distances from the start. After which it would find the path with the shortest distance and traced back to it.
 
 <h3> DFS </h3>
 DFS is a backtracking algorithm which helps us find the path in the maze and backtracks along the path when it is hitting a dead end.
@@ -25,11 +26,10 @@ This algorithm's worst case time complexity is O (n). It is in essence as we res
  
  * Create an (empty) worklist arraylist of squares.
  
- * Add the start square to the worklist. (Hint: maze.getStart() will return the Start square)
+ * Add the start square to the worklist. 
  
  * Then apply the following repeatedly
  
- * Is the worklist empty? If so, the exit is unreachable; terminate the algorithm by returning null (the maze is not solvable).
  
  * Otherwise, grab the "next" location to explore from the worklist. 
  
@@ -39,7 +39,6 @@ This algorithm's worst case time complexity is O (n). It is in essence as we res
  compute all the adjacent up, right, down, left locations that are inside the maze and aren't walls, and
  add them to the worklist for later exploration provided they have not previously been added to the worklist.
  
- * Also, record the fact that you've explored this location so you won't ever have to explore it again. Note that a location is considered "explored" once its neighbors have been put on the worklist. The neighbors themselves are not "explored" until they are removed from the worklist and checked for their neighbors.
 
 <img src= "https://github.com/acheredn/hengrui-tenzin-anatoliy-project-221/blob/main/DFS.png" width=250><br>
 
