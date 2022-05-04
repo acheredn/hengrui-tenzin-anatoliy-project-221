@@ -7,11 +7,14 @@ public class Dijkstra{
     private int[][] maze;
     private int mazeWidth;
     private int mazeHeight;
+    private int numberOfOnes;
     private ArrayList<Point> allThePoints;
     private ArrayList<Point> visitedPoints;
-    private HashMap<Point, ArrayList<Point>> pointNeighborMap;
-    private ArrayList<Point> dijkstraForTheShortestDistance;
     private PriorityQueue<Point> pointsQueue;
+    private ArrayList<Point> dijkstraForTheShortestDistance;
+    private HashMap<Point, ArrayList<Point>> pointNeighborMap;
+
+
     public Dijkstra(int[][] maze){
         this.maze = maze;
         mazeHeight = maze.length;
@@ -19,10 +22,20 @@ public class Dijkstra{
         allThePoints = new ArrayList<Point>();
         visitedPoints = new ArrayList<Point>();
         pointNeighborMap = new HashMap<>();
-        dijkstraForTheShortestDistance = new ArrayList<Point>();
         pointsQueue = new PriorityQueue<Point>();
-        
+        dijkstraForTheShortestDistance = new ArrayList<>();
+        numberOfOnes = 0;
+        for(int i = 0; i<mazeWidth;i++){
+            for(int j = 0;j<mazeHeight;j++){
+                if(maze[i][j]==1){
+                    numberOfOnes++;
+                }
+            }
+        }
         initializeAllThePoints();
+        initializePointNeighborMap();
+        doDijkstra();
+        backTracking();
     }
     private void initializeAllThePoints(){
         for(int i =0;i<maze[0].length;i++){
@@ -33,29 +46,32 @@ public class Dijkstra{
     }
     
     private void initializePointNeighborMap(){
+        
         for(Point point:allThePoints){
             pointNeighborMap.put(point, findNeighborPoints(point));
         }
-    }
 
+    }
+    
     private void doDijkstra(){
         //Add the starting point
-        visitedPoints.add(allThePoints.get(0));
         pointsQueue.add(allThePoints.get(0));
-        pointsQueue.addAll(findNeighborPoints(allThePoints.get(0)));
-        while(visitedPoints.size()!=allThePoints.size()){
+        while(visitedPoints.size()!=numberOfOnes){
             Point p = pointsQueue.poll();
             while(visitedPoints.contains(p)){
                 p = pointsQueue.poll();
             }
             visitedPoints.add(p);
-            dijkstraForTheShortestDistance.add(p);
             if(p!=null){
             ArrayList<Point> neighboList = findNeighborPoints(p);
             for(Point point:neighboList){
-                point.setValue(point.getValue()+p.getValue());
+                if(!visitedPoints.contains(point)){
+                    point.setPreviousPoint(p);
+                    point.setValue(1+p.getValue());
+                    pointsQueue.add(point);
+                }
             }
-            pointsQueue.addAll(neighboList);
+            
             }
         }
     }
@@ -68,52 +84,52 @@ public class Dijkstra{
         ArrayList<Point> newNeighborList = new ArrayList<>();
         int x = point.getX();
         int y = point.getY();
-        if(inBound(x, y-1)&&maze[x][y-1]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y-1)+x))){
-            Point foundPoint = allThePoints.get(mazeWidth*(y-1)+x);
-            foundPoint.setPreviousPoint(point);
-            newNeighborList.add(foundPoint);
-        }
-        if(inBound(x+1, y)&&maze[x+1][y]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y)+x+1))){       
-            Point foundPoint = allThePoints.get(mazeWidth*(y)+x+1);
-            foundPoint.setPreviousPoint(point);
-            newNeighborList.add(foundPoint);
-        }
-        if(inBound(x-1, y)&&maze[x-1][y]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y)+x-1))){
-            Point foundPoint = allThePoints.get(mazeWidth*(y)+x-1);
-            foundPoint.setPreviousPoint(point);
-            newNeighborList.add(foundPoint);
-        }
-        if(inBound(x,y+1)&&maze[x][y+1]==1&&!visitedPoints.contains(allThePoints.get(mazeWidth*(y+1)+x))){
-            Point foundPoint = allThePoints.get(mazeWidth*(y+1)+x);
-            foundPoint.setPreviousPoint(point);
-            newNeighborList.add(foundPoint);
+        if(point.getValue()!=0){
+            if(inBound(x, y-1)&&maze[y-1][x]==1){
+                Point foundPoint = allThePoints.get(mazeWidth*(y-1)+x);
+                newNeighborList.add(foundPoint);
+            }
+            if(inBound(x+1, y)&&maze[y][x+1]==1){       
+                Point foundPoint = allThePoints.get(mazeWidth*(y)+x+1);
+                newNeighborList.add(foundPoint);
+            }
+            if(inBound(x-1, y)&&maze[y][x-1]==1){
+                Point foundPoint = allThePoints.get(mazeWidth*(y)+x-1);
+                newNeighborList.add(foundPoint);
+            }
+            if(inBound(x,y+1)&&maze[y+1][x]==1){
+                Point foundPoint = allThePoints.get(mazeWidth*(y+1)+x);
+                newNeighborList.add(foundPoint);
+            }
         }
         return newNeighborList;
+    }
+    private void backTracking(){
+        Point p = visitedPoints.get(visitedPoints.size()-1);
+        getDijkstraForTheShortestDistance().add(p);
+        while(p.getPreviousPoint()!= null){
+            p = p.getPreviousPoint();
+            getDijkstraForTheShortestDistance().add(p);
+        }
+    }
+    public ArrayList<Point> getDijkstraForTheShortestDistance() {
+        return dijkstraForTheShortestDistance;
     }
 
     private boolean inBound(int x, int y){
         return x>=0 && x < mazeWidth && y>=0 && y < mazeHeight;
     }
-    public ArrayList<Point> getDijkstraForTheShortestDistance() {
-        return dijkstraForTheShortestDistance;
-    }
+    
     public static void main(String[] args) {
         int[][] maze = //m1.getHardCodedMaze();
     {
-        {1,0,1,1,0,0,1,0,0,0}
-        ,{1,1,1,1,1,1,1,1,1,1}
-        ,{0,1,0,0,0,0,1,0,0,0}
-        ,{0,1,1,1,0,0,1,0,1,0}
-        ,{1,1,0,1,0,1,1,0,1,1}
-        ,{1,0,0,1,0,0,0,1,1,0}
-        ,{1,1,1,0,1,1,1,1,0,0}
-        ,{0,1,0,0,1,0,0,0,0,0}
-        ,{0,1,1,1,1,0,0,0,0,0}
-        ,{0,0,0,0,1,1,1,1,1,1}}; 
+        {1,0,0,1},
+        {1,1,1,1},
+        {1,0,1,0},
+        {1,0,1,1},
+    } ;
         Dijkstra d = new Dijkstra(maze);
-        d.initializeAllThePoints();
-        d.initializePointNeighborMap();
-        d.doDijkstra();
-        //System.out.println(d.getDijkstraForTheShortestDistance().size());
+        
+        d.getDijkstraForTheShortestDistance();
     }
 }

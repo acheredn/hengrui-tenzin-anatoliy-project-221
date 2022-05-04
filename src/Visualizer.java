@@ -107,5 +107,32 @@ public class Visualizer {
                 canvas.add(visualMazeTwo[i][j]);
             }
         }
+        canvas.draw();
+        canvas.pause(1000);
+        Rectangle[][] visualMaze3 = new Rectangle[10][10];
+
+        for (int i = 0; i < maze.length; i++){
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == 1){
+                    Rectangle pathExist = new Rectangle(j*40, 500+i*40, 40, 40);
+                    pathExist.setFillColor(Color.GREEN);
+                    canvas.add(pathExist);
+                    visualMaze3[i][j] = pathExist;
+                } else {
+                    Rectangle pathNotExist = new Rectangle(j*40, 500+i*40, 40, 40);
+                    pathNotExist.setFillColor(Color.RED);
+                    canvas.add(pathNotExist);
+                    visualMaze3[i][j] = pathNotExist;
+                }
+            }
+        }
+        
+        Dijkstra d = new Dijkstra(maze);
+        ArrayList<Point> pathThree = d.getDijkstraForTheShortestDistance();
+        canvas.draw();
+        canvas.pause(1000);
+        for (Point point : pathThree) {
+            visualMaze3[point.getX()][point.getY()].setFillColor(Color.BLUE);
+        }
     }   
 }
